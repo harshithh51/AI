@@ -1,0 +1,285 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Hi there! 👋\nMy name is TECHBOG. How can I assist you today?",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -620,
+        -860
+      ],
+      "id": "a2294f86-feea-4c68-b49c-11fe5e93f9f7",
+      "name": "When chat message received",
+      "webhookId": "bb35957e-6065-402e-b999-aa95d7609dbf"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        -180,
+        -1040
+      ],
+      "id": "49ac5c16-3120-4a53-aae1-2ff9bff6958c",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -320,
+        -720
+      ],
+      "id": "43f735fc-d7b9-4448-9e59-452a5112b0e2",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "1hURGAtrnyiCriw7",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -440,
+        -720
+      ],
+      "id": "a629e431-2647-4e76-b2cc-303b411a8c88",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "url": "https://api.open-meteo.com/v1/forecast?latitude=17.384&longitude=78.4564&hourly=temperature_2m,rain,precipitation,precipitation_probability&current=temperature_2m&timezone=auto",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        -740
+      ],
+      "id": "a999a202-c89d-4f57-b08c-e7016ea9b36d",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "sendTo": "=harshithh50@gmail.com",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', `give some unique motivational quotes which will inspire and transform. while sending email add receipient name as harshith or vipul or reethika or steve and warm wishes by my name techbog`, 'string') }}",
+        "emailType": "text",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', `do some unique motivational quotes which will inspire and transform people.while sending email add receipient name as harshith or vipul or reethika or steve and warm wishes by techbog`, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -100,
+        -740
+      ],
+      "id": "bbb82e09-94e5-4e9b-841c-ebbe673c63fb",
+      "name": "Gmail",
+      "webhookId": "793b0a3a-dc01-449b-90a1-c2a49c2122c5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "CWePVa0hTQ9ycYTb",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "vipulvikrant5@gmail.com",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', `give some unique motivational quotes which will inspire and transform. while sending email add receipient name as harshith or vipul or reethika or steve and warm wishes by my name`, 'string') }}",
+        "emailType": "text",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', `give some unique motivational quotes which will inspire and transform. while sending email add receipient name as harshith or vipul or reethika or steve and warm wishes by my name`, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -220,
+        -760
+      ],
+      "id": "1f84db39-84c7-4a5b-b271-f31c43f1d12b",
+      "name": "Gmail1",
+      "webhookId": "a18167b6-8d23-4313-a8b5-173b9054f6b7",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "CWePVa0hTQ9ycYTb",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Text', `do tweets trending in world regarding current affairs ,business,crypto,stock market, but with nice and heartfelt manner dont be rude but add sarcasm to ur tweets`, 'string') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.twitterTool",
+      "typeVersion": 2,
+      "position": [
+        380,
+        -880
+      ],
+      "id": "e2f5c13b-f51f-40bf-9e3a-01e12bb118a5",
+      "name": "X",
+      "credentials": {
+        "twitterOAuth2Api": {
+          "id": "qkeJNh0qC6cT5mhU",
+          "name": "X account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "reethireethika5@gmail.com",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', `unique career counselling give her career advice regarding dental.she has done with bds graduation and thinking to go mds or abroard studies in deltal to settle there with high packages and add give her some inspiration and motivation also`, 'string') }}",
+        "emailType": "text",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', `unique give her career advice regarding dental.she has done with bds graduation and thinking to go mds or abroard studies in deltal to settle there with high packages and add give her some inspiration and motivation also`, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        40,
+        -820
+      ],
+      "id": "e74803ff-1120-4eb4-961f-7ebaf444c2e5",
+      "name": "Gmail2",
+      "webhookId": "3a18e85e-24ce-4eed-83bd-30bd355afd14",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "CWePVa0hTQ9ycYTb",
+          "name": "Gmail account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "X": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail2": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "7c7ba06f-e0ad-434c-8b15-4f75e1f53de8",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b80ace6c5366369d71d70ec59555b4694a5d46c3e03d49a0c27db89097c351aa"
+  },
+  "id": "qT8VdJ82FBwleg52",
+  "tags": []
+}
